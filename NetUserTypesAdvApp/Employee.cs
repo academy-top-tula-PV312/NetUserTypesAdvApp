@@ -8,12 +8,15 @@ namespace NetUserTypesAdvApp
 {
     public class Employee
     {
-        static int globalId;
+        public static int globalId;
+        public const int MAX = 100;
 
         int id;
         string name;
         int age;
-        public string Company { get; set; }
+        public string? Company { get; set; }
+
+        public CCity City { get; set; }
 
         public string GetName() { return name; }
 
@@ -60,8 +63,84 @@ namespace NetUserTypesAdvApp
     }
 }
 
-class Person
+struct Person
 {
     public string Name { set; get; }
     public int Age { set; get; }
 }
+
+class Region
+{
+    public string Name { set; get; }
+    readonly int code;
+
+    public Region()
+    {
+        this.Name = "";
+        this.code = 0;
+    }
+
+    public Region(string name, int code)
+    {
+        this.Name = name;
+        this.code = code;
+    }
+
+    public int Code
+    {
+        get
+        {
+            return code;
+        }
+    }
+}
+
+readonly struct Money
+{
+    readonly public double Usd;
+    readonly public double Euro;
+
+    public Money(double usd, double euro)
+    {
+        this.Usd = usd;
+        this.Euro = euro;
+    }
+}
+
+public class CCity
+{
+    public string Title { set; get; }
+}
+
+struct SCity
+{
+    public string Title { set; get; }
+}
+
+record RCity
+{
+    public string Title { set; get; }
+}
+
+readonly record struct Book(string Author, string Title, int Year);
+
+//record Book1
+//{
+//    public string Author { set; get; }
+//    public string Title { set; get; }
+//    public int Year { set; get; }
+
+//    public Book1(string author, string title, int year)
+//    {
+//        this.Author = author;
+//        this.Title = title;
+//        this.Year = year;
+//    }
+
+//    public void Deconstruct(out string author, out string title, out int year)
+//    {
+//        author = this.Author;
+//        title = this.Title;
+//        year = this.Year;
+//    }
+//}
